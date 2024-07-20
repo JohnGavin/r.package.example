@@ -27,11 +27,23 @@ jobs:
         id: check
         run: |
           echo "run_r_cmd_check=true" >> $GITHUB_OUTPUT
+      - name: To style or not to style?
+        id: style
+        run: |
+          echo "run_r_cmd_style=true" >> $GITHUB_OUTPUT
 
   r-cmd:
-    name: R CMD Check 🧬
     needs: job-setup
+    name: R CMD Check 🧬
     # Call a workflow from a given GitHub repository, from a given branch (or tag).
     uses: insightsengineering/r.pkg.template/.github/workflows/build-check-install.yaml@main
     if: >
       needs.job-setup.outputs.check_out == 'true'
+
+  r-cmd2:
+    needs: job-setup
+    name: R CMD Style 🧬
+    # Call a workflow from a given GitHub repository, from a given branch (or tag).
+    uses: insightsengineering/r.pkg.template/.github/workflows/style.yaml@main
+    if: >
+      needs.job-setup.outputs.style_out == 'true'
