@@ -31,6 +31,10 @@ jobs:
         id: style
         run: |
           echo "run_r_cmd_style=true" >> $GITHUB_OUTPUT
+      - name: To audit or not to audit?
+        id: audit
+        run: |
+          echo "run_r_cmd_audit=true" >> $GITHUB_OUTPUT
 
   r-cmd:
     needs: job-setup
@@ -47,3 +51,10 @@ jobs:
     uses: insightsengineering/r.pkg.template/.github/workflows/style.yaml@main
     if: >
       needs.job-setup.outputs.style_out == 'true'
+  r-cmd3:
+    needs: job-setup
+    name: R CMD audit 🧬
+    # Call a workflow from a given GitHub repository, from a given branch (or tag).
+    uses: insightsengineering/r.pkg.template/.github/workflows/audit.yaml@main
+    if: >
+      needs.job-setup.outputs.audit_out == 'true'
