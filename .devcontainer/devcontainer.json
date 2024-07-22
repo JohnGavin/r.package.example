@@ -1,6 +1,7 @@
 {
 	// https://containers.dev/implementors/json_reference/
 	"name": "user-workshop-cicd image R-4.3 (RStudio) container",
+	// image not available!
 	"image": "ghcr.io/user-workshop-cicd/r-pkg-example:4.3",
 	// env variables
 	"containerEnv": {
